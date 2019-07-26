@@ -1,0 +1,5 @@
+host: 'localhost:8080'
+protocol: 'http'
+management:
+  endpoints.web.exposure.include: prometheus
+  endpoint.prometheus.enabled: true
