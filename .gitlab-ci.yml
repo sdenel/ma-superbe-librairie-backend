@@ -26,7 +26,7 @@ cache:
     - .m2/repository
 
 test:
-  stage: verify
+  stage: build
   script:
     - 'mvn $MAVEN_CLI_OPTS verify'
   image: maven:3-jdk-8
