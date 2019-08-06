@@ -2,6 +2,7 @@ package fr.denel.simon.masuperbelibrairie.api
 
 import fr.denel.simon.masuperbelibrairie.model.LivreEntity
 import fr.denel.simon.masuperbelibrairie.services.LivreService
+import io.swagger.annotations.Api
 import io.swagger.annotations.ApiOperation
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -12,11 +13,12 @@ import java.util.*
 
 @RestController
 @RequestMapping("/api/v1/livres/")
+//@Api(value = "/api/v1/livres/", description = "Some description", produces = "application/json")
 class LivreController(
         val livreService: LivreService
 ) {
 
-    @GetMapping
+    @GetMapping(produces= ["application/json"])
     @ApiOperation("Récupérer l'ensemble des livres présents dans la librairie.")
     fun getAll() = livreService.getAll()
 
@@ -33,7 +35,7 @@ class LivreController(
         return ResponseEntity.created(location).build()
     }
 
-    @GetMapping("{uuid}")
+    @GetMapping("{uuid}", produces= ["application/json"])
     @ApiOperation("Récupérer un livre en particulier dans la librairie.")
     fun read(@PathVariable uuid: UUID): LivreEntity { // TODO : UUID et pas String
         return livreService.get(uuid)!!
@@ -46,7 +48,7 @@ class LivreController(
 //        // TODO
 //    }
 
-    @DeleteMapping("{uuid}")
+    @DeleteMapping("{uuid}", produces= ["application/json"])
     @ApiOperation("Supprimer un livre de la librairie.")
     @ResponseStatus(value = HttpStatus.OK)
     fun update(@PathVariable uuid: UUID) {
