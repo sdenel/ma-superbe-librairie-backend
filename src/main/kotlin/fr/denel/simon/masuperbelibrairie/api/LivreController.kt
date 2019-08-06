@@ -22,7 +22,7 @@ class LivreController(
     @ApiOperation("Récupérer l'ensemble des livres présents dans la librairie.")
     fun getAll() = livreService.getAll()
 
-    @PostMapping
+    @PostMapping(produces= ["application/json"])
     @ApiOperation("Ajouter un livre dans la librairie.")
     @ResponseStatus(value = HttpStatus.CREATED)
     fun create(@RequestBody livrePostDto: LivrePostDto): ResponseEntity<Any> {
